@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
 
 export default function Add() {
   const [name, setname] = useState();
   const [email, setemail] = useState();
   const [age, setage] = useState();
   const [error,setError] = useState();
-  const [msg,setMsg] = useState();
+  const navigate = useNavigate();
+  
+  
  
  
   const handleSubmit = async (e) => {
@@ -30,7 +34,8 @@ export default function Add() {
         setname("");
         setemail("");
         setage("");
-        setMsg("Data saved successfully")
+        
+        navigate("/alluser")
 
       
   
@@ -48,9 +53,9 @@ export default function Add() {
     
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
      
-        {error ? <div className="mb-4 p-3 text-white bg-red-500 rounded-lg">
+        {error && <div className="mb-4 p-3 text-white bg-red-500 rounded-lg">
           {error}
-        </div> :<div>{msg}</div>}
+        </div> }
       
       <h2 className="text-xl font-bold text-gray-700 mb-4">Enter User Data</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
