@@ -6,6 +6,7 @@ export default function Add() {
   const [name, setname] = useState();
   const [email, setemail] = useState();
   const [age, setage] = useState();
+  const[description,setDescription]=useState();
   const [error,setError] = useState();
   const navigate = useNavigate();
   
@@ -14,7 +15,7 @@ export default function Add() {
  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const adduser={name,email,age}
+    const adduser={name,email,age,description}
     try {
          
         const response = await fetch("http://localhost:5000/api/post", {
@@ -34,6 +35,7 @@ export default function Add() {
         setname("");
         setemail("");
         setage("");
+        setDescription("");
         
         navigate("/alluser")
 
@@ -101,6 +103,20 @@ export default function Add() {
             onChange={(e)=>setage(e.target.value)}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder="Enter your age"
+          />
+        </div>
+           {/* Description Input */}
+        <div>
+          <label className="block text-gray-600 font-medium mb-2" htmlFor="email">
+            Description:
+          </label>
+          <textarea
+            type="text"
+            name="description"
+            value={description}
+            onChange={(e)=>setDescription(e.target.value)} 
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            placeholder="Enter your email"
           />
         </div>
 

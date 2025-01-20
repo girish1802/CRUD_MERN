@@ -5,11 +5,13 @@ const router = express.Router();
 
 router.post("/api/post", async (req, res) => {
   try {
-    const { name, email, age } = req.body; // destructuring  name ,email ,age will get from frontend
+    const { name, email, age ,description} = req.body; // destructuring  name ,email ,age will get from frontend
     const newUser = new User({
       name: name,
       email: email,
       age: age,
+      description:description,
+
     });
     const useradded = await newUser.save();
     res.status(200).json(useradded);
